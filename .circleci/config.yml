@@ -4,13 +4,14 @@ version: 2.1
 commands:
   print_pipeline_id:
     steps:
-        - run: echo ${CIRCLE_WORKFLOW_ID}
+      - run: echo ${CIRCLE_WORKFLOW_ID}
 
 jobs:
-  # JOB to use the commands to print circle workflow id
+  # JOB to use the commands to print circle workflow
   my_job: 
-    docker: circleci/node:13.8.0
-  steps:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
       - print_pipeline_id
 
 # Orchestrate or schedule a set of jobs
@@ -19,4 +20,4 @@ workflows:
   my_workflow:
     # Run the my_job job in its own container
     jobs:
-        - my_job
+      - my_job
